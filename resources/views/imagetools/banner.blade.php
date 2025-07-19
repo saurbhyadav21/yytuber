@@ -83,7 +83,7 @@
                     <img class="hmrek" src="/images/youtube-banner-download.webp" alt="youtube banner"
                         style="width:854px;height:200px" loading="lazy">
                     <ul>
-                        <li>Design Inspiration: Content creators often look at other channels' banners to get design ideas
+                        <li>Design Inspiration: Context creators often look at other channels' banners to get design ideas
                             for their own. It's a great way to see what works and what doesn't in terms of visual branding.
                         </li>
                         <li>If you're a fan of a particular YouTuber, displaying their banner or cover on your desktop or
