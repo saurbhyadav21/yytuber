@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,7 +154,7 @@
 <body>
   <style>
     #monetizationForm input {
-      width: 600px;
+      width: 485px;
       padding: 6px;
       height: 40px;
       border-radius: 5px;
@@ -194,6 +197,20 @@
     <div class="logo">
       <a href="{{url('/')}}"><img src="http://localhost/projects/yytuber/public/images/logo.png" alt="YYTuber Logo"></a>
     </div>
+    {{-- <div class="logo">
+  <a href="{{ url('/') }}">
+    <img src="{{ asset('images/logo.png') }}" alt="YYTuber Logo">
+  </a>
+</div> --}}
+{{-- @php
+    $isLocal = request()->getHost() === 'localhost';
+    $baseUrl = $isLocal ? 'http://localhost/yytuber' : 'https://yourdomain.com';
+@endphp --}}
+
+
+
+
+
     @if (!request()->is('/'))  
     <form id="monetizationForm" style="display: flex; gap: 10px;">
       @csrf
@@ -221,6 +238,31 @@
           <a href="{{ url('/tool3') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Tool 3</a> --}}
         </div>
       </div>
+      <div class="dropdown" style="display: inline-block; position: relative;">
+        <a href="#" class="dropdown-toggle" style="cursor: pointer; color: white;"> Images Tools</a>
+        <div class="dropdown-menu" style="
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: rgba(255, 0, 0, 0.8); /* red transparent */
+          padding: 10px;
+          z-index: 999;
+          min-width: 290px;
+          border-radius: 6px;
+        ">
+          <a href="{{ url('/youtube-thumbnail') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Youtube Thumbnail Download</a>
+          <a href="{{ url('/profile-pictures') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Profile Picture Download</a>
+          <a href="{{ url('/banner-download') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Banner Download</a>
+          <a href="{{ url('/monetization-checker') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Watermark Logo Download </a>
+          <a href="{{ url('/monetization-checker') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Comment Images Download</a>
+          {{-- <a href="{{ url('/tool2') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Tool 2</a>
+          <a href="{{ url('/tool3') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Tool 3</a> --}} 
+        </div>
+      </div>
+
+      
+    
       <a href="{{url('/')}}">Home</a>
       <a href="{{url('/about')}}">About</a>
       <a href="{{url('/')}}">Blog</a>
@@ -298,7 +340,7 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
   });
 });
 </script>
-<script>
+{{-- <script>
 
   document.querySelector('.dropdown-toggle').addEventListener('click', function (e) {
     e.preventDefault();
@@ -313,7 +355,36 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
   });
 
 
+</script> --}}
+
+<script>
+  document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const currentMenu = this.nextElementSibling;
+
+      // Close all dropdowns first
+      document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+        if (menu !== currentMenu) {
+          menu.style.display = 'none';
+        }
+      });
+
+      // Toggle the clicked one
+      currentMenu.style.display = (currentMenu.style.display === 'block') ? 'none' : 'block';
+    });
+  });
+
+  // Close all when clicking outside
+  window.addEventListener('click', function (e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-menu').forEach(el => el.style.display = 'none');
+    }
+  });
 </script>
+
+
 
   </body>
   </html>
