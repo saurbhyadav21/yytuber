@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +161,7 @@
 <body>
   <style>
     #monetizationForm input {
-      width: 600px;
+      width: 485px;
       padding: 6px;
       height: 40px;
       border-radius: 5px;
@@ -201,14 +204,13 @@
     <div class="logo">
       <a href="{{url('/')}}"><img src="{{asset("public/images/logo.png")}}" alt="YYTuber Logo"></a>
     </div>
-
-    @if (!request()->is('/') && !request()->is('monetization-checker'))
-        <form id="monetizationForm" style="display: flex; gap: 10px;">
-            @csrf
-            <input type="text" placeholder="Enter YouTube Channel ID or URL" name="channel_url" id="channel_url"/>
-            <button type="submit" class="m_button"><i class="bi bi-search"></i> Check Now</button>
-        </form>
-        <div id="result" class="mt-6"></div>
+    @if (!request()->is('/'))  
+    <form id="monetizationForm" style="display: flex; gap: 10px;">
+      @csrf
+      <input type="text" placeholder="Enter YouTube Channel ID or URL" name="channel_url" id="channel_url"/>
+      <button type="submit" class="m_button"><i class="bi bi-search"></i> Check Now</button>
+    </form>
+    <div id="result" class="mt-6"></div>
     @endif
 
     <nav class="relative">
@@ -228,12 +230,8 @@
           <a href="{{ url('/') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Monetization Checker</a>
           
         </div>
-      </div> --}}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <a href="{{ url('/monetization-checker') }}">
-        <i class="fas fa-dollar-sign" style="color: #00ff00;"></i>
-        Monetization Checker
-      </a>
+      </div>
+      <a href="{{url('/')}}">Home</a>
       <a href="{{url('/about')}}">About</a>
       <a href="{{url('/')}}">Blog</a>
       <a href="{{url('/contact')}}">Contact</a>
@@ -310,7 +308,7 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
   });
 });
 </script>
-<script>
+{{-- <script>
 
   document.querySelector('.dropdown-toggle').addEventListener('click', function (e) {
     e.preventDefault();
@@ -325,7 +323,36 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
   });
 
 
+</script> --}}
+
+<script>
+  document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const currentMenu = this.nextElementSibling;
+
+      // Close all dropdowns first
+      document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+        if (menu !== currentMenu) {
+          menu.style.display = 'none';
+        }
+      });
+
+      // Toggle the clicked one
+      currentMenu.style.display = (currentMenu.style.display === 'block') ? 'none' : 'block';
+    });
+  });
+
+  // Close all when clicking outside
+  window.addEventListener('click', function (e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-menu').forEach(el => el.style.display = 'none');
+    }
+  });
 </script>
+
+
 
   </body>
   </html>

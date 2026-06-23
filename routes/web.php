@@ -11,6 +11,9 @@ Route::get('/privacy', function () {return view('privacy-policy');});
 Route::get('/terms', function () {return view('terms');});
 // Route::get('/', function () {return view('welcome');});
 // Route::get('/', function () {return view('welcome');});
+Route::get('/youtube-thumbnail', function () {return view('imagetools.youtubeThumbnail');});
+Route::get('/profile-pictures', function () {return view('imagetools.profilePictures');});
+Route::get('/banner-download', function () {return view('imagetools.banner');});
 
 
 Route::get('/monetization-checker', function () {
