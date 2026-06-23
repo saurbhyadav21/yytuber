@@ -2,31 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\Tags\Url;
+use Illuminate\Support\Facades\Route;
 
 class SitemapController extends Controller
 {
     public function index()
     {
-        $sitemap = Sitemap::create()
+        $routes = collect(Route::getRoutes())
+            ->filter(function ($route) {
+                return in_array('GET', $route->methods())
+                    && !str_contains($route->uri(), '{')
+                    && !str_starts_with($route->uri(), '_')
+                    && $route->uri() !== 'sitemap.xml';
+            });
 
-            ->add(
-                Url::create('/')
-                    ->setPriority(1.0)
-            )
-
-            ->add(
-                Url::create('/youtube-thumbnail-downloader')
-                    ->setPriority(0.9)
-            )
-
-            ->add(
-                Url::create('/youtube-tag-extractor')
-                    ->setPriority(0.9)
-            );
-
-        return response($sitemap->render())
-            ->header('Content-Type', 'application/xml');
+        return response()
+            ->view('sitemap', compact('routes'))
+            ->header('Content-Type', 'text/xml');
     }
 }

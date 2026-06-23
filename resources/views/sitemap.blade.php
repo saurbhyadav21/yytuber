@@ -2,11 +2,11 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-@foreach($pages as $page)
+@foreach($routes as $route)
 <url>
-    <loc>{{ url($page) }}</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <loc>{{ url($route->uri()) }}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>{{ $route->uri() == '/' ? '1.0' : '0.8' }}</priority>
 </url>
 @endforeach
 
