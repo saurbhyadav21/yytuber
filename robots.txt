@@ -1,4 +1,14 @@
 User-agent: *
+
+# Block private pages
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /password
+Disallow: /dashboard
+
+# Allow everything else
 Allow: /
 
+# Sitemap
 Sitemap: https://yytuber.com/sitemap.xml
