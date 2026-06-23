@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\SitemapController;
+
 
 Route::get('/', function () {return view('home');});
 
@@ -28,3 +30,6 @@ Route::get('youtube/channel/{slug}', [YoutubeController::class, 'show'])->name('
 // Route::post('/check-monetization-enc', [YoutubeController::class, 'showChannelStats'])->name('check.monetization.enc');
 
 
+
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
