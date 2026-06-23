@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>YYtuber - Analyze & Monetize Your YouTube Channel</title>
+  <meta name="description" content="Get real-time YouTube channel analytics, earnings estimate, and monetization tools with YYtuber. Grow your channel smarter.">
+  <meta name="keywords" content="YouTube analytics, monetize YouTube, YouTube stats, YYtuber, channel earnings, YouTube income calculator">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YYTuber Checker</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +95,7 @@
     }
 
     .tags a:hover {
-      background-color: white;
+      background-color: red;
       color: white;
     }
 
@@ -99,6 +103,9 @@
       width: 100%;
       margin: 2rem 0;
     }
+    th {
+    color: white !important;
+}
 
     .channel-table th,
     .channel-table td {
@@ -107,7 +114,7 @@
     }
 
     .channel-table th {
-      background-color: #1c1c1c;
+      background-color: red;
     }
 
     .stats-preview {
@@ -192,18 +199,20 @@
   </div>
   
     <div class="logo">
-      <a href="{{url('/')}}"><img src="http://localhost/projects/yytuber/public/images/logo.png" alt="YYTuber Logo"></a>
+      <a href="{{url('/')}}"><img src="{{asset("public/images/logo.png")}}" alt="YYTuber Logo"></a>
     </div>
-    @if (!request()->is('/'))  
-    <form id="monetizationForm" style="display: flex; gap: 10px;">
-      @csrf
-      <input type="text" placeholder="Enter YouTube Channel ID or URL" name="channel_url" id="channel_url"/>
-      <button type="submit" class="m_button"><i class="bi bi-search"></i> Check Now</button>
-    </form>
-    <div id="result" class="mt-6"></div>
+
+    @if (!request()->is('/') && !request()->is('monetization-checker'))
+        <form id="monetizationForm" style="display: flex; gap: 10px;">
+            @csrf
+            <input type="text" placeholder="Enter YouTube Channel ID or URL" name="channel_url" id="channel_url"/>
+            <button type="submit" class="m_button"><i class="bi bi-search"></i> Check Now</button>
+        </form>
+        <div id="result" class="mt-6"></div>
     @endif
+
     <nav class="relative">
-      <div class="dropdown" style="display: inline-block; position: relative;">
+      {{-- <div class="dropdown" style="display: inline-block; position: relative;">
         <a href="#" class="dropdown-toggle" style="cursor: pointer; color: white;">Tools</a>
         <div class="dropdown-menu" style="
           display: none;
@@ -216,12 +225,15 @@
           min-width: 180px;
           border-radius: 6px;
         ">
-          <a href="{{ url('/monetization-checker') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Monetization</a>
-          {{-- <a href="{{ url('/tool2') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Tool 2</a>
-          <a href="{{ url('/tool3') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Tool 3</a> --}}
+          <a href="{{ url('/') }}" style="display: block; padding: 8px 10px; color: white; text-decoration: none;">Monetization Checker</a>
+          
         </div>
-      </div>
-      <a href="{{url('/')}}">Home</a>
+      </div> --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <a href="{{ url('/monetization-checker') }}">
+        <i class="fas fa-dollar-sign" style="color: #00ff00;"></i>
+        Monetization Checker
+      </a>
       <a href="{{url('/about')}}">About</a>
       <a href="{{url('/')}}">Blog</a>
       <a href="{{url('/contact')}}">Contact</a>

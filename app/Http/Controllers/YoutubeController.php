@@ -7,87 +7,11 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
-
+use Carbon\Carbon;
+use DB;
 class YoutubeController extends Controller
 {
-    // public function checkMonetization(Request $request)
-    // {
-    //     $request->validate([
-    //         'channel_url' => 'required|string'
-    //     ]);
-
-    //     $channelUrl = $request->channel_url;
-    //     $channelId = $this->extractChannelId($channelUrl);
-
-    //     if (!$channelId) {
-    //         return back()->with('error', 'Invalid channel URL or ID');
-    //     }
-
-    //     $apiKey = env('YOUTUBE_API_KEY');
-
-    //     $response = Http::get("https://www.googleapis.com/youtube/v3/channels", [
-    //         'part' => 'snippet,statistics,brandingSettings,contentDetails,topicDetails',
-    //         'id' => $channelId,
-    //         'key' => $apiKey
-    //     ]);
-
-    //     if ($response->failed() || empty($response['items'])) {
-    //         return back()->with('error', 'Channel not found.');
-    //     }
-
-    //     $channel = $response['items'][0];
-    //     $subscriberCount = (int) $channel['statistics']['subscriberCount'];
-    //     $viewCount = (int) $channel['statistics']['viewCount'];
-    //     $videoCount = (int) $channel['statistics']['videoCount'];
-    //     $watchHours = rand(2000, 6000); // Simulated watch hours
-    //     $eligible = $subscriberCount >= 1000 && $watchHours >= 4000;
-    //     $publishedAt = $channel['snippet']['publishedAt'] ?? null;
-    //     $description = $channel['snippet']['description'] ?? '';
-    //     $country = $channel['snippet']['country'] ?? 'N/A';
-    //     $topics = $channel['topicDetails']['topicCategories'] ?? [];
-
-    //     $profilePicture = $channel['snippet']['thumbnails']['high']['url'] ?? null;
-    //     $thumbnails = $channel['snippet']['thumbnails'];
-    //     $profilePictures = [];
-    //     foreach ($thumbnails as $key => $thumb) {
-    //         $profilePictures[$key] = $thumb['url'];
-    //     }
-
-    //     $coverArtBase = $channel['brandingSettings']['image']['bannerExternalUrl'] ?? '';
-    //     $coverSizes = [
-    //         '2120x1192', '2120x351', '1920x1080', '2560x424', '1280x720', '2276x377',
-    //         '1440x395', '1707x283', '1280x351', '854x480', '960x263', '1138x188',
-    //         '1060x175', '640x175', '320x180', '320x88'
-    //     ];
-    //     $coverImages = [];
-    //     foreach ($coverSizes as $size) {
-    //         $width = explode('x', $size)[0];
-    //         $coverImages[$size] = $coverArtBase . "=w{$width}-k-c0xffffffff-no-nd-rj";
-    //     }
-
-    //     $isVerified = $channel['brandingSettings']['channel']['keywords'] ?? false;
-    //     $hasJoinButton = $subscriberCount >= 1000; // Approximation
-
-    //     return view('welcome', [
-    //         'title' => $channel['snippet']['title'],
-    //         'subscribers' => $subscriberCount,
-    //         'views' => $viewCount,
-    //         'watchHours' => $watchHours,
-    //         'eligible' => $eligible,
-    //         'channel_id' => $channelId,
-    //         'created_at' => $publishedAt,
-    //         'video_count' => $videoCount,
-    //         'description' => $description,
-    //         'country' => $country,
-    //         'topics' => $topics,
-    //         'profile_picture' => $profilePicture,
-    //         'cover_art' => $coverArtBase,
-    //         'profile_pictures' => $profilePictures,
-    //         'cover_images' => $coverImages,
-    //         'is_verified' => $isVerified,
-    //         'has_join_button' => $hasJoinButton,
-    //     ]);
-    // }
+   
 
     public function checkMonetization(Request $request)
     {
@@ -141,6 +65,96 @@ class YoutubeController extends Controller
     }
 
 
+    // public function ajaxCheckMonetization(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'encrypted' => 'required|string'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(['message' => 'Invalid data provided.'], 422);
+    //     }
+
+    //     // Simulated "decryption"
+    //     $channelUrl = base64_decode($request->encrypted);
+    //     $channelId = $this->extractChannelId($channelUrl);
+    //     // dd( $channelId);
+    //     if (!$channelId) {
+    //         return response()->json(['message' => 'Invalid channel URL or ID.'], 422);
+    //     }
+
+    //     $apiKey = env('YOUTUBE_API_KEY');
+
+    //     $response = Http::get("https://www.googleapis.com/youtube/v3/channels", [
+    //         'part' => 'snippet,statistics,brandingSettings,contentDetails,topicDetails',
+    //         'id' => $channelId,
+    //         'key' => $apiKey
+    //     ]);
+
+    //     if ($response->failed() || empty($response['items'])) {
+    //         return response()->json(['message' => 'Channel not found.'], 404);
+    //     }
+    //     // dd($response);
+    //     $channel = $response['items'][0];
+    //     $subscriberCount = (int) $channel['statistics']['subscriberCount'];
+    //     $viewCount = (int) $channel['statistics']['viewCount'];
+    //     $videoCount = (int) $channel['statistics']['videoCount'];
+    //     $watchHours = rand(2000, 6000);
+    //     $eligible = $subscriberCount >= 1000 && $watchHours >= 4000;
+    //     $publishedAt = $channel['snippet']['publishedAt'] ?? null;
+    //     $country = $channel['snippet']['country'] ?? 'N/A';
+    //     $topics = $channel['topicDetails']['topicCategories'] ?? [];
+
+    //     $thumbnails = $channel['snippet']['thumbnails'];
+    //     $profilePictures = [];
+    //     foreach ($thumbnails as $key => $thumb) {
+    //         $profilePictures[$key] = $thumb['url'];
+    //     }
+
+    //     $coverArtBase = $channel['brandingSettings']['image']['bannerExternalUrl'] ?? '';
+    //     $coverSizes = ['2120x1192', '2120x351', '1920x1080'];
+    //     $coverImages = [];
+    //     foreach ($coverSizes as $size) {
+    //         $width = explode('x', $size)[0];
+    //         $coverImages[$size] = $coverArtBase . "=w{$width}-k-c0xffffffff-no-nd-rj";
+    //     }
+
+        
+    //     $data = [
+    //         'status' => 'success',
+    //         'data' => [
+    //             'title' => $channel['snippet']['title'],///
+    //             'title2' => $channel['snippet']['customUrl'],///
+    //             'subscribers' => $subscriberCount,///
+    //             'views' => $viewCount,///
+    //             'watchHours' => $watchHours,
+    //             'eligible' => $eligible,
+    //             'channel_id' => $channelId,
+    //             'created_at' => $publishedAt,
+    //             'video_count' => $videoCount,
+    //             'country' => $country,
+    //             'topics' => $topics,
+    //             'profile_pictures' => $profilePictures,
+    //             'cover_images' => $coverImages,
+    //             'is_verified' => !empty($channel['brandingSettings']['channel']['keywords']),
+    //             'has_join_button' => $subscriberCount >= 1000,
+    //         ]
+    //     ];
+    //     // dd($data);
+    //     // Use only channel_id for route parameter
+    //     $slug = $this->makeSlug($channel['snippet']['title']);
+
+    //     $redirectUrl = route('channel', ['slug' => $slug]);
+
+    //     session(['channel_data' => $data['data']]);
+
+    //     return response()->json([
+    //         'redirectUrl' => $redirectUrl,
+    //         'stats' => $data['data'], // send only inner data, not status wrapper
+    //     ]);
+    // }
+
+
     public function ajaxCheckMonetization(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -151,7 +165,6 @@ class YoutubeController extends Controller
             return response()->json(['message' => 'Invalid data provided.'], 422);
         }
 
-        // Simulated "decryption"
         $channelUrl = base64_decode($request->encrypted);
         $channelId = $this->extractChannelId($channelUrl);
 
@@ -159,7 +172,34 @@ class YoutubeController extends Controller
             return response()->json(['message' => 'Invalid channel URL or ID.'], 422);
         }
 
-        $apiKey = env('YOUTUBE_API_KEY');
+        $channel_search = DB::table('channel_search')
+            ->where('channel_id', $channelId)
+            ->first(); // Returns the first result (or null if no match is found)
+
+        if ($channel_search) {
+            // Data found
+            // You can access like: $channel_search->channel_name, $channel_search->description, etc.
+            // Example:
+            // echo "Channel found: " . $channel_search->channel_name;
+            $data_db = $channel_search->api_response;
+            $data_1 = json_decode($data_db, TRUE);
+            $data = $data_1['data'];
+            // dd($data['data']);
+            // dd($data['tags'][0]);
+
+            $slug = $this->makeSlug($data['sl']);
+            $redirectUrl = route('channel', ['slug' => $slug]);
+
+            // // Store in session
+            session(['channel_data' => $data]);
+
+            return response()->json([
+                'redirectUrl' => $redirectUrl,
+                'stats' => $data,
+            ]);
+
+        } else {
+            $apiKey = env('YOUTUBE_API_KEY');
 
         $response = Http::get("https://www.googleapis.com/youtube/v3/channels", [
             'part' => 'snippet,statistics,brandingSettings,contentDetails,topicDetails',
@@ -170,23 +210,25 @@ class YoutubeController extends Controller
         if ($response->failed() || empty($response['items'])) {
             return response()->json(['message' => 'Channel not found.'], 404);
         }
-        // dd($response);
+
         $channel = $response['items'][0];
         $subscriberCount = (int) $channel['statistics']['subscriberCount'];
         $viewCount = (int) $channel['statistics']['viewCount'];
         $videoCount = (int) $channel['statistics']['videoCount'];
-        $watchHours = rand(2000, 6000);
+        $watchHours = rand(2000, 6000); // Dummy data
         $eligible = $subscriberCount >= 1000 && $watchHours >= 4000;
         $publishedAt = $channel['snippet']['publishedAt'] ?? null;
         $country = $channel['snippet']['country'] ?? 'N/A';
         $topics = $channel['topicDetails']['topicCategories'] ?? [];
 
+        // Thumbnail Images
         $thumbnails = $channel['snippet']['thumbnails'];
         $profilePictures = [];
         foreach ($thumbnails as $key => $thumb) {
             $profilePictures[$key] = $thumb['url'];
         }
 
+        // Cover Images
         $coverArtBase = $channel['brandingSettings']['image']['bannerExternalUrl'] ?? '';
         $coverSizes = ['2120x1192', '2120x351', '1920x1080'];
         $coverImages = [];
@@ -195,41 +237,197 @@ class YoutubeController extends Controller
             $coverImages[$size] = $coverArtBase . "=w{$width}-k-c0xffffffff-no-nd-rj";
         }
 
+        // Estimate views (dummy logic, adjust with real if you get them from elsewhere)
+        $viewsPerDay = round($viewCount / 365); // very rough estimate
+        $viewsPerHour = round($viewsPerDay / 24);
+
+        // CPM Estimation (USD per 1000 views)
+        // $lowCPM = 1.5;
+        // $highCPM = 4.0;
+        $categoryCPM = $this->detectCPMByCategory($topics);
+        $countryCPM = $this->detectCPMByCountry($country);
+        $cpmRates = $this->getFinalCPM($categoryCPM, $countryCPM);
+        // Earning Calculation
+        $earnings = [
+            'hourly' => [
+                'min' => round(($viewCount / 365 / 24 / 1000) * $cpmRates['min'], 2),
+                'max' => round(($viewCount / 365 / 24 / 1000) * $cpmRates['max'], 2),
+            ],
+            'daily' => [
+                'min' => round(($viewCount / 365 / 1000) * $cpmRates['min'], 2),
+                'max' => round(($viewCount / 365 / 1000) * $cpmRates['max'], 2),
+            ],
+            'weekly' => [
+                'min' => round(($viewCount / 52 / 1000) * $cpmRates['min'], 2),
+                'max' => round(($viewCount / 52 / 1000) * $cpmRates['max'], 2),
+            ],
+            'yearly' => [
+                'min' => round(($viewCount / 1000) * $cpmRates['min'], 2),
+                'max' => round(($viewCount / 1000) * $cpmRates['max'], 2),
+            ],
+        ];
+            // Construct Channel URL
+        $channelUrlFinal = "https://www.youtube.com/channel/{$channelId}";
+
+        // Calculate age
+        $createdDate = Carbon::parse($publishedAt);
+        $now = Carbon::now();
+        $daysOld = $createdDate->diffInDays($now);
+        $createdDateFormatted = $createdDate->isoFormat('MMM D, YYYY') . " 【" . $createdDate->diffForHumans($now, ['short' => true, 'parts' => 3]) . "】";
+
+        // Dial Code Mapping (can be extended)
+        $dialCodes = [
+            'IN' => '+91',
+            'US' => '+1',
+            'UK' => '+44',
+            // Add more as needed
+        ];
+        $dialCode = $dialCodes[$country] ?? 'N/A';
+
+        // Religion Mapping (rough guess)
+        $religionMap = [
+            'IN' => 'Hinduism',
+            'US' => 'Christianity',
+            'PK' => 'Islam',
+            // Add more if needed
+        ];
+        $religion = $religionMap[$country] ?? 'Unknown';
+        $totalDays = $createdDate->diffInDays(Carbon::now());
+        $totalDays = max($totalDays, 1); // avoid divide by zero
+
+        // Averages for Subscribers
+        $dailySubscribers = round($subscriberCount / $totalDays, 2);
+        $weeklySubscribers = round($dailySubscribers * 7, 2);
+        $monthlySubscribers = round($dailySubscribers * 30, 2);
+        $fortnightSubscribers = round($dailySubscribers * 14, 2);
+
+        // Averages for Views
+        $dailyViews = round($viewCount / $totalDays, 2);
+        $weeklyViews = round($dailyViews * 7, 2);
+        $monthlyViews = round($dailyViews * 30, 2);
+        $fortnightViews = round($dailyViews * 14, 2);
+
+        // Averages for Videos
+        $dailyVideos = round($videoCount / $totalDays, 2);
+        $weeklyVideos = round($dailyVideos * 7, 2);
+        $monthlyVideos = round($dailyVideos * 30, 2);
+        $fortnightVideos = round($dailyVideos * 14, 2);
+
+        // Averages for Estimated Earnings (based on daily earnings already calculated)
+        $dailyEarningMin = $earnings['daily']['min'];
+        $dailyEarningMax = $earnings['daily']['max'];
+
+        $weeklyEarningMin = round($dailyEarningMin * 7, 2);
+        $weeklyEarningMax = round($dailyEarningMax * 7, 2);
+
+        $monthlyEarningMin = round($dailyEarningMin * 30, 2);
+        $monthlyEarningMax = round($dailyEarningMax * 30, 2);
+
+        $fortnightEarningMin = round($dailyEarningMin * 14, 2);
+        $fortnightEarningMax = round($dailyEarningMax * 14, 2);
+        // Keywords (tags)
+        $tags = $channel['brandingSettings']['channel']['keywords'] ?? '';
+        $tagsList = array_filter(array_map('trim', explode(',', $tags)));
         
+        // Response data
         $data = [
             'status' => 'success',
             'data' => [
-                'title' => $channel['snippet']['title'],///
-                'title2' => $channel['snippet']['customUrl'],///
-                'subscribers' => $subscriberCount,///
-                'views' => $viewCount,///
-                'watchHours' => $watchHours,
-                'eligible' => $eligible,
-                'channel_id' => $channelId,
-                'created_at' => $publishedAt,
-                'video_count' => $videoCount,
-                'country' => $country,
-                'topics' => $topics,
+                'title' => $channel['snippet']['title'],
+                'title2' => $channel['snippet']['customUrl'] ?? '',
+                'subscribers' => $subscriberCount,
+                'views' => $viewCount,
+                'sl'=>$channel['snippet']['title'],
+                'watchHours' => $watchHours,///
+                'eligible' => $eligible,///
+                'channel_id' => $channelId,///
+                'created_at' => $publishedAt,////
+                'video_count' => $videoCount,///
+                'country' => $country,//
+                'topics' => $topics,///
                 'profile_pictures' => $profilePictures,
                 'cover_images' => $coverImages,
-                'is_verified' => !empty($channel['brandingSettings']['channel']['keywords']),
-                'has_join_button' => $subscriberCount >= 1000,
+                'is_verified' => !empty($channel['brandingSettings']['channel']['keywords']),///
+                'has_join_button' => $subscriberCount >= 1000,/////
+                'earnings' => $earnings,/////
+                // Channel metadata (example - you can adjust this logic as needed)
+                'channel_url' => $channelUrlFinal,
+                'channel_age_days' => $daysOld,
+                'channel_created_date_formatted' => $createdDateFormatted,
+                'dial_code' => $dialCode,
+                'religion' => $religion,
+                'tags' => $tagsList,
+                'description' => $channel['snippet']['description'] ?? '',
+                'estimated_stats' => [
+                'subscribers' => [
+                    'daily' => $dailySubscribers,
+                    'weekly' => $weeklySubscribers,
+                    'fortnight' => $fortnightSubscribers,
+                    'monthly' => $monthlySubscribers,
+                ],
+                'views' => [
+                    'daily' => $dailyViews,
+                    'weekly' => $weeklyViews,
+                    'fortnight' => $fortnightViews,
+                    'monthly' => $monthlyViews,
+                ],
+                'videos' => [
+                    'daily' => $dailyVideos,
+                    'weekly' => $weeklyVideos,
+                    'fortnight' => $fortnightVideos,
+                    'monthly' => $monthlyVideos,
+                ],
+                'earnings' => [
+                    'daily' => [
+                        'min' => $dailyEarningMin,
+                        'max' => $dailyEarningMax,
+                    ],
+                    'weekly' => [
+                        'min' => $weeklyEarningMin,
+                        'max' => $weeklyEarningMax,
+                    ],
+                    'fortnight' => [
+                        'min' => $fortnightEarningMin,
+                        'max' => $fortnightEarningMax,
+                    ],
+                    'monthly' => [
+                        'min' => $monthlyEarningMin,
+                        'max' => $monthlyEarningMax,
+                    ],
+                ]
+                ]
             ]
         ];
-        // dd($data);
-        // Use only channel_id for route parameter
-        $slug = $this->makeSlug($channel['snippet']['title']);
 
-        $redirectUrl = route('channel', ['slug' => $slug]);
+            $data_insert = [
+                'channel_id' => $channelId,
+                'api_response' => json_encode($data),
+                'created_at' => now(),  // Optional if you have timestamps
+                'last_updated_date' => now(),  // Optional if you have timestamps
+            ];
+            
+            DB::table('channel_search')->insert($data_insert);
 
-        session(['channel_data' => $data['data']]);
 
-        return response()->json([
-            'redirectUrl' => $redirectUrl,
-            'stats' => $data['data'], // send only inner data, not status wrapper
-        ]);
+            // dd($data);
+            // Slug route
+            // $data = json_decode($data, TRUE);
+            // print_r( $data );   
+            $slug = $this->makeSlug($channel['snippet']['title']);
+            $redirectUrl = route('channel', ['slug' => $slug]);
+
+            // Store in session
+            session(['channel_data' => $data['data']]);
+
+            return response()->json([
+                'redirectUrl' => $redirectUrl,
+                'stats' => $data['data'],
+            ]);
+        }
+
+        
+        
     }
-
 
     public function showChannelStats(Request $request)
     {
@@ -293,4 +491,53 @@ public function show($slug)
 
     return view('channel_stats', compact('data'));
 }
+
+
+function detectCPMByCategory(array $topics): array {
+    $categories = [
+        'finance' => [15.0, 25.0],
+        'business' => [15.0, 25.0],
+        'technology' => [8.0, 15.0],
+        'software' => [8.0, 15.0],
+        'education' => [4.0, 10.0],
+        'gaming' => [1.5, 4.0],
+        'entertainment' => [1.5, 4.0],
+        'vlog' => [2.0, 5.0],
+        'lifestyle' => [2.0, 5.0],
+        'kids' => [0.5, 2.0],
+    ];
+
+    foreach ($topics as $topic) {
+        foreach ($categories as $keyword => $cpm) {
+            if (stripos($topic, $keyword) !== false) {
+                return ['min' => $cpm[0], 'max' => $cpm[1]];
+            }
+        }
+    }
+
+    return ['min' => 1.5, 'max' => 4.0]; // default CPM
+}
+
+function detectCPMByCountry(?string $country): array {
+    $country = strtolower($country ?? '');
+    if (in_array($country, ['us', 'gb', 'uk', 'ca'])) {
+        return ['min' => 6.0, 'max' => 12.0];
+    } elseif (in_array($country, ['au', 'nz'])) {
+        return ['min' => 5.0, 'max' => 10.0];
+    } elseif (in_array($country, ['fr', 'de', 'nl', 'se'])) {
+        return ['min' => 4.0, 'max' => 8.0];
+    } elseif (in_array($country, ['in', 'ph', 'bd'])) {
+        return ['min' => 0.5, 'max' => 2.0];
+    } else {
+        return ['min' => 1.5, 'max' => 4.0];
+    }
+}
+
+function getFinalCPM(array $categoryCPM, array $countryCPM): array {
+    return [
+        'min' => max($categoryCPM['min'], $countryCPM['min']),
+        'max' => max($categoryCPM['max'], $countryCPM['max']),
+    ];
+}
+
 }

@@ -13,7 +13,7 @@ Route::get('/terms', function () {return view('terms');});
 // Route::get('/', function () {return view('welcome');});
 
 
-Route::get('/youtube', function () {
+Route::get('/monetization-checker', function () {
     return view('welcome');
 });
 

@@ -1,101 +1,73 @@
- @extends('layouts.app')
+@extends('layouts.app')
 
- @section('title', 'Channel Stats')
- 
- @section('content')
-  
- <section class="hero">
-  <h1>Track Any YouTube Channel</h1>
-  <p>Statistics | Growth | Income | Views | Subscribers | Monetization</p>
-  <form id="monetizationForm">
-    @csrf
-    <input type="text" placeholder="Enter YouTube Channel ID or URL" name="channel_url" id="channel_url"/>
-    <button type="submit"><i class="bi bi-search"></i> Check Now</button>
-  </form>
-  
-   
-    <!-- Updated Loader -->
-    
+@section('title', 'Channel Stats')
 
-    
-</section>
-<div id="result" class="mt-6"></div>
-<section class="hero">
-  <h1>Explore Topics</h1>
-  <p>Tips, tutorials, and how-to guides</p>
-  @php
-  $tags = [ 'YouTube',
-'Amazon',
-'Facebook',
-'Gmail',
-'Wordle',
-'Google',
-'Google Translate',
-'Translate',
-'Weather',
-'ChatGPT',
-'WhatsApp',
-'Instagram',
-'Twitter',
-'TikTok',
-'Netflix',
-'News',
-'Maps',
-'LinkedIn',
-'Zoom',
-'Pinterest',
-'Spotify',
-'Walmart',
-'Craigslist',
-'eBay',
-'CNN',
-'Reddit',
-'Calculator',
-'Apple',
-'Hotmail',
-'Speed Test'];
-  @endphp
+@section('content')
+<!-- Font Awesome (if not already included in layout) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <div class="tags">
-      @foreach ($tags as $tag)
-          <a href="/">{{ '#' . $tag }}</a>
-      @endforeach
-  </div>
-</section>
+<div class="container py-5">
+    <h1 class="text-center mb-5 fw-bold" style="color: #fd0d0d;">Best YouTube Tutorials and Tools</h1>
 
-<section class="container">
-  <h1 class="text-center my-4 text-danger">Top 10 YouTube Channels Worldwide</h1>
-  <div class="table-responsive">
-    <table class="table channel-table text-white">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Channel Name</th>
-          <th>Subscribers</th>
-          <th>Total Views</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>T-Series</td><td>265M+</td><td>245B+</td></tr>
-        <tr><td>2</td><td>MrBeast</td><td>245M+</td><td>45B+</td></tr>
-        <tr><td>3</td><td>Cocomelon</td><td>175M+</td><td>180B+</td></tr>
-        <tr><td>4</td><td>SET India</td><td>170M+</td><td>160B+</td></tr>
-        <tr><td>5</td><td>Kids Diana Show</td><td>120M+</td><td>100B+</td></tr>
-        <tr><td>6</td><td>Like Nastya</td><td>115M+</td><td>90B+</td></tr>
-        <tr><td>7</td><td>Vlad and Niki</td><td>110M+</td><td>95B+</td></tr>
-        <tr><td>8</td><td>Zee Music Company</td><td>105M+</td><td>75B+</td></tr>
-        <tr><td>9</td><td>WWE</td><td>102M+</td><td>80B+</td></tr>
-        <tr><td>10</td><td>BLACKPINK</td><td>90M+</td><td>40B+</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
 
-<section class="stats-preview">
-  <div class="stat-card"><i class="bi bi-tv-fill"></i> 10M+ Channels Tracked</div>
-  <div class="stat-card"><i class="bi bi-graph-up"></i> Real-Time Stats</div>
-  <div class="stat-card"><i class="bi bi-cash-stack"></i> Monetization Estimator</div>
-</section>
+        @php
+            $tools = [
+                ['title' => 'YouTube Monetization Checker', 'desc' => 'Check if a YouTube channel or video is monetized.', 'icon' => 'fa-dollar-sign', 'url' => '/monetization-checker', 'color' => 'success'],
+                ['title' => 'YouTube Channel ID Finder', 'desc' => 'Find any channel\'s ID using the YouTube Data API.', 'icon' => 'fa-id-badge', 'url' => '/channel-id-finder', 'color' => 'info'],
+                ['title' => 'YouTube Data Viewer', 'desc' => 'Reveal metadata like upload time, tags, and monetization.', 'icon' => 'fa-database', 'url' => '/data-viewer', 'color' => 'primary'],
+                ['title' => 'YouTube Profile Picture & Image Downloader', 'desc' => 'Download channel pictures, banners, and thumbnails in HD.', 'icon' => 'fa-image', 'url' => '/image-downloader', 'color' => 'danger'],
+                ['title' => 'YouTube Tag Extractor', 'desc' => 'Extract video tags and keywords for SEO and research.', 'icon' => 'fa-tags', 'url' => '/tag-extractor', 'color' => 'warning'],
+                ['title' => 'YouTube Shadowban Checker', 'desc' => 'Check if a channel is shadowbanned and its visibility status.', 'icon' => 'fa-user-secret', 'url' => '/shadowban-checker', 'color' => 'secondary'],
+                ['title' => 'YouTube Money Calculator', 'desc' => 'Estimate earnings based on video and channel metrics.', 'icon' => 'fa-calculator', 'url' => '/money-calculator', 'color' => 'success'],
+            ];
+        @endphp
 
-  
- @endsection
+        @foreach ($tools as $tool)
+            <div class="col">
+                <div class="card shadow h-100 border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-{{ $tool['color'] }}">
+                            <i class="fas {{ $tool['icon'] }} me-2"></i> {{ $tool['title'] }}
+                        </h5>
+                        <p class="card-text">{{ $tool['desc'] }}</p>
+                        <a href="{{ url($tool['url']) }}" class="btn btn-outline-{{ $tool['color'] }} btn-sm">
+                            Learn More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+    </div>
+
+    <!-- Topics Section -->
+    <section class="hero mt-5" style="padding: 1rem 1rem;">
+        <h2 class="text-center mb-2">Explore Topics</h2>
+        <p class="text-center text-muted" style="color: #fff !important;">Tips, tutorials, and how-to guides</p>
+        @php
+            $tags = [
+                'YouTube','Amazon','Facebook','Gmail','Wordle','Google','Google Translate',
+                'Translate','Weather','ChatGPT','WhatsApp','Instagram','Twitter','TikTok',
+                'Netflix','News','Maps','LinkedIn','Zoom','Pinterest','Spotify','Walmart',
+                'Craigslist','eBay','CNN','Reddit','Calculator','Apple','Hotmail','Speed Test'
+            ];
+        @endphp
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+            @foreach ($tags as $tag)
+                <a href="{{ url('/search?q=' . urlencode($tag)) }}" class="badge bg-light text-dark border px-3 py-2 text-decoration-none" style="transition: all 0.3s ease;">
+                    #{{ $tag }}
+                </a>
+            @endforeach
+        </div>
+    </section>
+</div>
+
+<style>
+    .card:hover {
+        transform: translateY(-4px);
+        transition: 0.3s ease-in-out;
+    }
+</style>
+@endsection
