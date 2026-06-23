@@ -1,1 +1,4 @@
-xx
+User-agent: *
+Allow: /
+
+Sitemap: https://yytuber.com/sitemap.xml
