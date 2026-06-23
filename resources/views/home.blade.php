@@ -43,7 +43,7 @@
 
     <!-- Topics Section -->
     <section class="hero mt-5" style="padding: 1rem 1rem;">
-        <h2 class="text-center mb-2">Explore Topicxxxs</h2>
+        <h2 class="text-center mb-2">Explore Topicxsxxs</h2>
         <p class="text-center text-muted" style="color: #fff !important;">Tips, tutorials, and how-to guides</p>
         @php
             $tags = [
