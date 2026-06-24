@@ -1,18 +1,16 @@
 <script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-@foreach($faqs as $faq)
-{
-"@type":"Question",
-"name": @json($faq['question']),
-"acceptedAnswer":{
-"@type":"Answer",
-"text": @json($faq['answer'])
-}
-}@if(!$loop->last),@endif
-@endforeach
-]
-}
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => collect($faqs)->map(function ($faq) {
+        return [
+            '@type' => 'Question',
+            'name' => $faq['question'],
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $faq['answer']
+            ]
+        ];
+    })->values()
+], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}
 </script>
