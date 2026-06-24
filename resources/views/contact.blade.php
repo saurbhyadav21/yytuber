@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Channel Stats')
-
+<x-faq-schema :faqs="config('faq.contact')" />
 @section('content')
 <div class="container">
 <section class="page-content">
