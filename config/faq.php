@@ -281,6 +281,35 @@ return [
             'answer' => 'Yes, the YouTube Channel Tracker is completely free and works on desktop and mobile devices without registration.'
         ]
 
+    ],
+
+    'channel-stats' => [
+
+        [
+            'question' => 'How can I check YouTube channel statistics?',
+            'answer' => 'Enter any YouTube channel URL, handle, username, or ID to view detailed statistics including subscribers, views, videos, and growth metrics.'
+        ],
+
+        [
+            'question' => 'What information does the YouTube Channel Stats tool provide?',
+            'answer' => 'The tool shows channel subscribers, total views, videos, creation date, country, estimated earnings, growth trends, and monetization insights.'
+        ],
+
+        [
+            'question' => 'Can I analyze any public YouTube channel?',
+            'answer' => 'Yes, you can analyze any public YouTube channel and access detailed statistics and performance data.'
+        ],
+
+        [
+            'question' => 'Does the Channel Stats tool show estimated YouTube earnings?',
+            'answer' => 'Yes, the tool provides estimated income and monetization insights based on channel performance and view metrics.'
+        ],
+
+        [
+            'question' => 'Is the YouTube Channel Stats tool free to use?',
+            'answer' => 'Yes, the Channel Stats tool is completely free and works on desktop and mobile devices without requiring registration.'
+        ]
+
     ]
 
 ];

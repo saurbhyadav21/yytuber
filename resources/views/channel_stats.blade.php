@@ -3,7 +3,7 @@
 @section('title', 'Channel Stats')
 
 @section('content')
-
+<x-faqs :faqs="config('faq.channel-stats')" />
 
     <style>
         * {
