@@ -551,7 +551,7 @@
                     ${{ number_format($data['estimated_stats']['earnings']['fortnight']['max']) }}</td>
             </tr>
         </table>
-
+        <x-faqs :faqs="config('faq.channel-stats')" />
     </div>
 
 

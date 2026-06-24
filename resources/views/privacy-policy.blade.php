@@ -4,6 +4,7 @@
 
 @section('content')
 <x-faq-schema :faqs="config('faq.privacy-policy')" />
+
 <div class="container">
   <section class="page-content">
     <h1>Privacy Policy</h1>
@@ -11,5 +12,5 @@
     <p>Any data analyzed using our platform is processed temporarily and securely.</p>
   </section>
 </div>
-
+<x-faqs :faqs="config('faq.privacy-policy')" />
 @endsection

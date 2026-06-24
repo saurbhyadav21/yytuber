@@ -99,5 +99,6 @@
                 </section>
             </div>
         </div>
+        <x-faqs :faqs="config('faq.banner-download')" />
     </main>
 @endsection

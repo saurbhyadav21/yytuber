@@ -196,6 +196,6 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
  <div class="stat-card"><i class="bi bi-graph-up"></i> Real-Time Stats</div>
  <div class="stat-card"><i class="bi bi-cash-stack"></i> Monetization Estimator</div>
 </section> --}}
-
+<x-faqs :faqs="config('faq.track-channel')" />
  
 @endsection

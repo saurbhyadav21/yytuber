@@ -14,4 +14,5 @@
   </ul>
 </section>
 </div>
+<x-faqs :faqs="config('faq.contact')" />
 @endsection

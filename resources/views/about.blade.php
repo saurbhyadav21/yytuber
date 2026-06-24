@@ -11,6 +11,6 @@
   <p>We believe in empowering YouTubers with transparent, useful, and real-time insights.</p>
 </section>
 
-
+<x-faqs :faqs="config('faq.about')" />
 
 @endsection
