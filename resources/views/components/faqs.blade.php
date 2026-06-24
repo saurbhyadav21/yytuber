@@ -10,10 +10,11 @@
     .faq-item summary {
         cursor: pointer;
         font-weight: bold;
+        color: #000;
     }
 
     .faq-item p {
-        margin-top: 10px;
+        margin-top: 10px;color: #000;
     }
 </style>
 
