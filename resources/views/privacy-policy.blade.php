@@ -3,7 +3,7 @@
 @section('title', 'Channel Stats')
 
 @section('content')
-
+<x-faq-schema :faqs="config('faq.privacy-policy')" />
 <div class="container">
   <section class="page-content">
     <h1>Privacy Policy</h1>

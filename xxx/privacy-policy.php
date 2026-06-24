@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<x-faq-schema :faqs="config('faq.privacy-policy')" />
+
 
   <section class="page-content">
     <h1>Privacy Policy</h1>
