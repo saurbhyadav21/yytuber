@@ -3,33 +3,32 @@
 return [
     'home' => [
 
-        [
-            'question' => 'What is YYTuber?',
-            'answer' => 'YYTuber is a free collection of YouTube tools and resources designed to help creators grow their channels.'
-        ],
+[
+'question' => 'What tools are available on YYTuber?',
+'answer' => 'YYTuber provides free tools including YouTube Monetization Checker, Channel ID Finder, Data Viewer, Profile Picture Downloader, Tag Extractor, Shadowban Checker, and YouTube Money Calculator.'
+],
 
-        [
-            'question' => 'Which YouTube tools are available on YYTuber?',
-            'answer' => 'YYTuber offers tools such as Thumbnail Downloader, Tag Extractor, Hashtag Generator, Title Generator, and more.'
-        ],
+[
+'question' => 'How can I check if a YouTube channel is monetized?',
+'answer' => 'Use the YouTube Monetization Checker to verify whether a YouTube channel or video is monetized.'
+],
 
-        [
-            'question' => 'Are all YYTuber tools free to use?',
-            'answer' => 'Yes, all tools on YYTuber are free and do not require registration.'
-        ],
+[
+'question' => 'Can I download YouTube profile pictures and thumbnails in HD?',
+'answer' => 'Yes, the YouTube Profile Picture and Image Downloader allows you to download channel profile pictures, banners, and video thumbnails in HD quality.'
+],
 
-        [
-            'question' => 'Can I use YYTuber tools on mobile devices?',
-            'answer' => 'Yes, YYTuber tools work on desktops, tablets, and smartphones.'
-        ],
+[
+'question' => 'How do I extract tags from a YouTube video?',
+'answer' => 'Simply enter the YouTube video URL into the YouTube Tag Extractor to reveal tags and keywords used in the video.'
+],
 
-        [
-            'question' => 'Do I need to create an account to use YYTuber?',
-            'answer' => 'No, you can use all available tools without creating an account.'
+[
+'question' => 'Can I estimate YouTube earnings with YYTuber?',
+'answer' => 'Yes, the YouTube Money Calculator helps estimate channel and video earnings based on views and engagement metrics.'
+]
 
-        ]
-
-    ],
+],
     'youtube-thumbnail-downloader' => [
 
         [
