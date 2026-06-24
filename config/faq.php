@@ -223,6 +223,64 @@ return [
             'answer' => 'Yes, this tool is completely free and does not require any software installation.'
         ]
 
+    ],
+
+    'banner-download' => [
+
+        [
+            'question' => 'How can I download a YouTube banner?',
+            'answer' => 'Enter the YouTube channel URL or username and download the channel banner in high quality.'
+        ],
+
+        [
+            'question' => 'Can I download YouTube channel banners in HD quality?',
+            'answer' => 'Yes, this tool allows you to download YouTube channel banners in the highest available resolution.'
+        ],
+
+        [
+            'question' => 'Do I need to sign up to use the YouTube Banner Downloader?',
+            'answer' => 'No, you can download YouTube banners without creating an account.'
+        ],
+
+        [
+            'question' => 'Can I use the YouTube Banner Downloader on mobile devices?',
+            'answer' => 'Yes, the tool works on smartphones, tablets, and desktop devices.'
+        ],
+
+        [
+            'question' => 'Is the YouTube Banner Downloader free to use?',
+            'answer' => 'Yes, the YouTube Banner Downloader is completely free and requires no software installation.'
+        ]
+
+    ],
+
+    'track-channel' => [
+
+        [
+            'question' => 'How can I track a YouTube channel statistics?',
+            'answer' => 'Enter any YouTube channel URL or ID to view statistics, growth trends, views, subscribers, estimated income, and monetization details.'
+        ],
+
+        [
+            'question' => 'Can I check YouTube channel growth and subscriber count?',
+            'answer' => 'Yes, you can track subscriber count, views, and channel growth metrics in real time.'
+        ],
+
+        [
+            'question' => 'How do I estimate YouTube channel income?',
+            'answer' => 'Our YouTube income calculator estimates earnings based on views, engagement, and channel performance metrics.'
+        ],
+
+        [
+            'question' => 'Can I check if a YouTube channel is monetized?',
+            'answer' => 'Yes, you can analyze channels and estimate monetization eligibility using our YouTube Monetization Checker.'
+        ],
+
+        [
+            'question' => 'Is the YouTube Channel Tracker free to use?',
+            'answer' => 'Yes, the YouTube Channel Tracker is completely free and works on desktop and mobile devices without registration.'
+        ]
+
     ]
 
 ];

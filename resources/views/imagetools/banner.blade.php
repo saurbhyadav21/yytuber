@@ -4,7 +4,7 @@
 
 @section('content')
 
-
+<x-faq-schema :faqs="config('faq.banner-download')" />
 
     <main class="container-fluid">
         <div class="container text-center my-4" itemtype="https://schema.org/CreativeWork" itemscope="">

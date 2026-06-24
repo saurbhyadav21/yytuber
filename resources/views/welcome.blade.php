@@ -144,7 +144,7 @@ document.getElementById('monetizationForm').addEventListener('submit', function 
 @section('title', 'Channel Stats')
 
 @section('content')
- 
+ <x-faqs :faqs="config('faq.track-channel')" />
 <section class="hero">
  <h1>Track Any YouTube Channel</h1>
  <p>Statistics | Growth | Income | Views | Subscribers | Monetization</p>
