@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Channel Stats')
+{{-- Contact --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.contact')" />
+
 <x-faq-schema :faqs="config('faq.contact')" />
 @section('content')
 <div class="container">

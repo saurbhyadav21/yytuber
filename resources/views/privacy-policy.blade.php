@@ -3,6 +3,9 @@
 @section('title', 'Channel Stats')
 
 @section('content')
+{{-- Privacy Policy --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.privacy')" />
+
 <x-faq-schema :faqs="config('faq.privacy-policy')" />
 
 <div class="container">

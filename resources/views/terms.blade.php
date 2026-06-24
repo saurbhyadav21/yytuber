@@ -3,6 +3,9 @@
 @section('title', 'Channel Stats')
 
 @section('content')
+{{-- Terms of Use --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.terms')" />
+
 <x-faq-schema :faqs="config('faq.terms-of-use')" />
 
 <section class="page-content">

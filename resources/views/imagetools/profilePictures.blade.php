@@ -3,6 +3,9 @@
 @section('title', 'Profile Pictures Download')
 
 @section('content')
+{{-- Profile Pictures Download --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.profile-pictures')" />
+
 <x-faq-schema :faqs="config('faq.profile-picture-download')" />
 
     <main class="container-fluid">

@@ -3,6 +3,8 @@
 @section('title', 'Channel Stats')
 
 @section('content')
+{{-- About --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.about')" />
 
 <x-faq-schema :faqs="config('faq.about')" />
 <section class="page-content">

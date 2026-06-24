@@ -3,6 +3,9 @@
 @section('title', 'Channel Stats')
 
 @section('content')
+{{-- YouTube Monetization Checker --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.monetization-checker')" />
+
 <x-faqs :faqs="config('faq.channel-stats')" />
 
     <style>

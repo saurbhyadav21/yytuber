@@ -3,6 +3,8 @@
 @section('title', 'Banner Download')
 
 @section('content')
+{{-- Banner Download --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.banner-download')" />
 
 <x-faq-schema :faqs="config('faq.banner-download')" />
 

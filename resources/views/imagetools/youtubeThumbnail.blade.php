@@ -3,6 +3,9 @@
 @section('title', 'Youtube Thumbnail Download')
 
 @section('content')
+{{-- YouTube Thumbnail Downloader --}}
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.youtube-thumbnail')" />
+
 <x-faq-schema :faqs="config('faq.youtube-thumbnail-downloader')" />
 
     <main class="container mt-4">
