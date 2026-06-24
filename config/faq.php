@@ -54,7 +54,7 @@ return [
 [
 'question' => 'Is YYTuber free to use?',
 'answer' => 'Yes, YYTuber provides free YouTube tools and resources without requiring users to create an account.'
-]
+],
 
 ],'contact' => [
 
