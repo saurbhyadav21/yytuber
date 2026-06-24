@@ -3,7 +3,7 @@
 @section('title', 'Youtube Thumbnail Download')
 
 @section('content')
-
+<x-faq-schema :faqs="config('faq.youtube-thumbnail-downloader')" />
     <main class="container mt-4">
         <div id="info-section" class="text-center mb-3">
             <h1 itemprop="headline">Download All Images on YouTube</h1>

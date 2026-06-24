@@ -194,6 +194,35 @@ return [
             'answer' => 'Yes, no registration is required.'
         ]
 
+    ],
+
+    'profile-picture-download' => [
+
+        [
+            'question' => 'How can I download a YouTube profile picture?',
+            'answer' => 'Simply enter the YouTube channel URL or username and download the profile picture in high quality.'
+        ],
+
+        [
+            'question' => 'Can I download YouTube profile pictures in HD quality?',
+            'answer' => 'Yes, this tool allows you to download YouTube profile pictures in the highest available resolution.'
+        ],
+
+        [
+            'question' => 'Do I need to create an account to download profile pictures?',
+            'answer' => 'No, you can download YouTube profile pictures without registration or login.'
+        ],
+
+        [
+            'question' => 'Can I use this YouTube Profile Picture Downloader on mobile devices?',
+            'answer' => 'Yes, the tool works on smartphones, tablets, and desktop devices.'
+        ],
+
+        [
+            'question' => 'Is the YouTube Profile Picture Downloader free to use?',
+            'answer' => 'Yes, this tool is completely free and does not require any software installation.'
+        ]
+
     ]
 
 ];
