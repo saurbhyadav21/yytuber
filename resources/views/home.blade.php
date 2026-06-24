@@ -6,7 +6,7 @@
 <!-- Font Awesome (if not already included in layout) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-<x-breadcrumb-schema :breadcrumbs="config('breadcrumbs.home')" />
+<x-breadcrumb :breadcrumbs="config('breadcrumbs.'.$slug)" />
 
 <div class="container py-5">
     <h1 class="text-center mb-5 fw-bold" style="color: #fd0d0d;">Best YouTube Tutorials and 1</h1>
