@@ -3,7 +3,7 @@
 @section('title', 'Profile Pictures Download')
 
 @section('content')
-
+<x-faq-schema :faqs="config('faq.profile-picture-download')" />
     <main class="container-fluid">
         <div class="container text-center my-4" itemtype="https://schema.org/CreativeWork" itemscope="">
             <h1 itemprop="headline">View and Download YouTube Profile Picture</h1>
