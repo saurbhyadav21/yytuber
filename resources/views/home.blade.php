@@ -10,8 +10,8 @@
     <h1 class="text-center mb-5 fw-bold" style="color: #fd0d0d;">Best YouTube Tutorials and 1</h1>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        <x-faq-schema :faqs="config('faq.'.$slug)" />
-        
+        <x-faq-schema :faqs="config('faq.home')" />
+
         @php
             $tools = [
                 ['title' => 'YouTube Monetization Checker', 'desc' => 'Check if a YouTube channel or video is monetized.', 'icon' => 'fa-dollar-sign', 'url' => '/monetization-checker', 'color' => 'success'],
