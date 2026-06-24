@@ -63,6 +63,8 @@
             @endforeach
         </div>
     </section>
+
+    <x-faqs :faqs="config('faq.home')" />
 </div>
 
 <style>
